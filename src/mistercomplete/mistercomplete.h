@@ -2,12 +2,12 @@
 #include <vector>
 #include <string>
 #include <utility>
-#include "trie.h"
+#include "../trie/trie.h"
 
-class mistercomplete {
+class Mistercomplete {
 
 public:
-        mistercomplete();
+        Mistercomplete();
         void add_entry(int id, std::string text);
         std::vector<std::pair<int, std::string>> suggest(std::string text);
 
