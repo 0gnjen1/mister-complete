@@ -3,10 +3,12 @@
 #include <iostream>
 #include <string>
 
-Trie::Trie() {}
+Trie::Trie() {
+	std::cout << "trie: created\n";
+}
 
 void Trie::insert(std::string entry)
 {
-	std::cout << "inserted\n";
+	std::cout << "trie: inserted " << entry << "\n";
 }
 

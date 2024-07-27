@@ -12,12 +12,13 @@ Mistercomplete::Mistercomplete()
 
 void Mistercomplete::add_entry(int id, std::string text)
 {
-	std::cout << "mistercomplete: added entry\n";
+	std::cout << "mistercomplete: added entry " << text << "\n";
+	trie.insert(text);
 }
 
-std::vector<std::pair<int, std::string>> suggest(std::string text)
+[[nodiscard]] std::vector<std::pair<int, std::string>> Mistercomplete::suggest(std::string text)
 {
-	std::cout << "mistercomplete: returning suggestions\n";
+	std::cout << "mistercomplete: returning suggestions " << text << "\n";
 	std::vector<std::pair<int, std::string>> suggestions (2, std::make_pair(5, "mock answer"));
 	return suggestions;
 }
