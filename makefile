@@ -1,4 +1,6 @@
-WARNFLAG = -Wall -Wextra -Wpedantic
+WARNFLAG := -Wall -Wextra -Wpedantic
+
+# Library =====================================================================================================
 
 mistercomplete.a: ./src/trie/trie.o ./src/mistercomplete/mistercomplete.o
 	@echo " - Archiving into a library"
@@ -12,11 +14,26 @@ trie.o: ./src/trie/trie.cpp ./src/trie/trie.h
 	@echo " - Compiling trie.cpp"
 	g++ $(WARNFLAG) -c ./src/trie/trie.cpp -o ./src/trie/trie.o
 
-test: ./lib/mistercomplete.a
-	g++ -c ./test/testing.cpp -o ./test/testing.o
-	g++ ./test/testing.o -static ./lib/mistercomplete.a -o ./test/testing.out
+# Test Classes =====================================================================================================
+
+testtrie.o: ./test/testtrie.cpp ./test/testtrie.h
+	@echo " - Compiling testtrie.cpp"
+	g++ $(WARNFLAG) -c ./test/testtrie.cpp -o ./test/testtrie.o
+
+# Testing =====================================================================================================
+
+test: testing.out
 	@echo " - Running tests"
 	./test/testing.out
+
+testing.out: ./test/testing.o ./lib/mistercomplete.a ./test/testtrie.o
+	g++ -c ./test/testing.cpp -o ./test/testing.o
+	g++ ./test/testing.o ./test/testtrie.o -static ./lib/mistercomplete.a -o ./test/testing.out
+
+testing.o: ./test/testing.cpp
+	g++ $(WARNFLAG) -c ./test/testing.cpp -o ./testing/testing.o
+
+# Clean =====================================================================================================
 
 clean:
 	@echo " - Cleaning up the object files and the compiled library"

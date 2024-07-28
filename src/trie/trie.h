@@ -6,9 +6,11 @@ class Trie {
 
 public:
         Trie();
-        Node* children[26] = { nullptr };
-	void insert(std::string entry);	
+	void insert(const int id, const std::string& entry);	
 
 private:
+        Node node;
+
+friend class TestTrie;
 
 };
