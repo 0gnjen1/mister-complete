@@ -26,7 +26,13 @@
 *.a
 *.lib
 
+# Folder for compiled stuff
+lib/*
+
 # Executables
 *.exe
 *.out
 *.app
+
+# Vscode stuff
+.vscode
