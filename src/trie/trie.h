@@ -9,7 +9,7 @@ public:
 	void insert(const int id, const std::string& entry);	
 
 private:
-        Node node;
+        Node* root;
 
 friend class TestTrie;
 

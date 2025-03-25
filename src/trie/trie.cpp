@@ -3,13 +3,13 @@
 #include <iostream>
 #include <string>
 
-Trie::Trie() {}
+Trie::Trie() {
+	root = new Node();
+}
 
 void Trie::insert(const int id, const std::string& entry)
 {
-	std::cout << "trie: inserted " << entry << "\n";
-	
-	Node* current_node = &node;
+	Node* current_node = root;
 	for(int i=0; i<entry.size(); i++)
 	{
 		int child_index = ((int)entry[i])-97;
@@ -20,11 +20,12 @@ void Trie::insert(const int id, const std::string& entry)
 			next_node = current_node->children[child_index];
 			next_node->parent = current_node;
 			next_node->character = entry[i];
-			if(i == (entry.size()-1))
-			{
-				next_node->ending = true;
-				next_node->id = id;
-			}
+		}
+		if(i == (entry.size()-1))
+		{
+			next_node->ending = true;
+			next_node->id = id;
+			return;
 		}
 		current_node = next_node;
 	}
