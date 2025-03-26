@@ -2,9 +2,9 @@ WARNFLAG := -Wall -Wextra -Wpedantic
 
 # Library =====================================================================================================
 
-mistercomplete.a: ./src/trie/trie.o ./src/mistercomplete/mistercomplete.o
+mistercomplete.a: ./src/node/node.o ./src/trie/trie.o ./src/mistercomplete/mistercomplete.o
 	@echo " - Archiving into a library"
-	ar rcs ./lib/mistercomplete.a ./src/trie/trie.o ./src/mistercomplete/mistercomplete.o
+	ar rcs ./lib/mistercomplete.a ./src/node/node.o ./src/trie/trie.o ./src/mistercomplete/mistercomplete.o
 
 mistercomplete.o: ./src/mistercomplete/mistercomplete.cpp ./src/mistercomplete/mistercomplete.h
 	@echo " - Compiling mistercomplete.cpp"
@@ -13,6 +13,10 @@ mistercomplete.o: ./src/mistercomplete/mistercomplete.cpp ./src/mistercomplete/m
 trie.o: ./src/trie/trie.cpp ./src/trie/trie.h
 	@echo " - Compiling trie.cpp"
 	g++ $(WARNFLAG) -c ./src/trie/trie.cpp -o ./src/trie/trie.o
+
+node.o: ./src/node/node.cpp ./src/node/node.h
+	@echo " - Compiling node.cpp"
+	g++ $(WARNFLAG) -c ./src/node/node.cpp -o ./src/node/node.o
 
 # Test Classes =====================================================================================================
 

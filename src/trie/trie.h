@@ -6,7 +6,8 @@ class Trie {
 
 public:
         Trie();
-	void insert(const int id, const std::string& entry);	
+	void insert(const int id, const std::string& entry);
+        void remove(const std::string& entry);
 
 private:
         Node* root;
