@@ -1,8 +1,15 @@
-WARNFLAG := -Wall -Wextra -Wpedantic
+WARNFLAG := -Wall -Werror -Wextra -Wpedantic
+
+STATIC_OPTION := -static #Linux
+UNAME := $(shell uname)
+ifeq ($(UNAME), Darwin) #MacOS
+	STATIC_OPTION := ""
+endif
+
 
 # Library =====================================================================================================
 
-mistercomplete.a: ./src/node/node.o ./src/trie/trie.o ./src/mistercomplete/mistercomplete.o
+mistercomplete.a: ./lib/ ./src/node/node.o ./src/trie/trie.o ./src/mistercomplete/mistercomplete.o
 	@echo " - Archiving into a library"
 	ar rcs ./lib/mistercomplete.a ./src/node/node.o ./src/trie/trie.o ./src/mistercomplete/mistercomplete.o
 
@@ -18,6 +25,9 @@ node.o: ./src/node/node.cpp ./src/node/node.h
 	@echo " - Compiling node.cpp"
 	g++ $(WARNFLAG) -c ./src/node/node.cpp -o ./src/node/node.o
 
+./lib/:
+	mkdir lib
+
 # Test Classes =====================================================================================================
 
 testtrie.o: ./test/testtrie.cpp ./test/testtrie.h
@@ -32,7 +42,7 @@ test: testing.out
 
 testing.out: ./test/testing.o ./lib/mistercomplete.a ./test/testtrie.o
 	g++ -c ./test/testing.cpp -o ./test/testing.o
-	g++ ./test/testing.o ./test/testtrie.o -static ./lib/mistercomplete.a -o ./test/testing.out
+	g++ ./test/testing.o ./test/testtrie.o $(STATIC_OPTION) ./lib/mistercomplete.a -o ./test/testing.out
 
 testing.o: ./test/testing.cpp
 	g++ $(WARNFLAG) -c ./test/testing.cpp -o ./testing/testing.o
@@ -42,3 +52,4 @@ testing.o: ./test/testing.cpp
 clean:
 	@echo " - Cleaning up the object files and the compiled library"
 	rm -f ./lib/mistercomplete.a ./src/*/*.o ./test/*.out ./test/*.o
+	rm -rf lib
