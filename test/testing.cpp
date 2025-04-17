@@ -9,39 +9,33 @@
 
 int main(){
 
-	Trie tr;
-	tr.insert(1, "aaa");
-	tr.insert(2, "aa");
-	tr.insert(3, "aab");
-	tr.insert(4, "aaa");
-	tr.insert(5, "baa");
-	tr.insert(6, "bbb");
-	tr.insert(7, "bbbx");
-	tr.insert(8, "xyz");
-	tr.insert(9, "aaa");
+	Mistercomplete mc;
+	mc.add_entry(1, "a");
+	mc.add_entry(2, "aa");
+	mc.add_entry(3, "xyz");
+	mc.add_entry(4, "aaaa");
+	mc.add_entry(5, "aaaaa");
+	mc.add_entry(6, "aaaaaa");
 
 	std::vector<std::string> searches;
 	searches.push_back("");
 	searches.push_back("a");
 	searches.push_back("aaaaa");
-	searches.push_back("b");
-	searches.push_back("bb");
 
 	for(const std::string& search : searches)
 	{
 		std::cout << "autocomplete for search '" << search << "':\n";
 		std::vector<std::pair<int, std::string>> results;
-		results = tr.autocomplete(search);
+		results = mc.suggest(search);
 		for(const auto& result : results)
 		{
 			std::cout << " - id: " << result.first << " value: " << result.second << '\n';
 		}
 	}
 
+	/*
 	std::cout << "AFTER REMOVAL\n";
 	tr.remove("");
-	tr.remove("bbb");
-	tr.remove("ijk");
 	tr.remove("aa");
 
 	for(const std::string& search : searches)
@@ -54,6 +48,7 @@ int main(){
 			std::cout << " - id: " << result.first << " value: " << result.second << '\n';
 		}
 	}
+	*/
 
 }
 

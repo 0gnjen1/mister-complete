@@ -99,7 +99,7 @@ std::vector<std::pair<int, std::string>> Trie::autocomplete(const std::string& p
 {
 	Node* prefix_end = get_node_by_prefix(prefix);
 	std::vector<std::pair<int, std::string>> results;
-	if(prefix_end == nullptr) return results;
+	if(prefix_end == nullptr) return results;					// The prefix is not present in the trie
 	results = get_all_from_node(prefix_end);
 	for(auto& result : results)
 	{
