@@ -4,10 +4,10 @@
 #include <utility>
 #include "trie.h"
 
-class Mistercomplete {
+class Completer {
 
 public:
-        Mistercomplete();
+        Completer();
         void add_entry(const int id, const std::string& text);
         [[nodiscard]] std::vector<std::pair<int, std::string>> suggest(const std::string& text);
 
