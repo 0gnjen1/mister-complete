@@ -2,14 +2,14 @@
 #include <utility>
 #include <string>
 #include <iostream>
-#include "../src/mistercomplete/mistercomplete.h"
+#include "../include/completer.h"
 
-#include "../src/trie/trie.h"
+#include "../include/trie.h"
 #include "./testtrie.h"
 
 int main(){
 
-	Mistercomplete mc;
+	Completer mc;
 	mc.add_entry(1, "a");
 	mc.add_entry(2, "aa");
 	mc.add_entry(3, "xyz");

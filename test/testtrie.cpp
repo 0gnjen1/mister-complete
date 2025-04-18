@@ -3,7 +3,7 @@
 #include <utility>
 #include <stack>
 #include <iostream>
-#include "../src/trie/trie.h"
+#include "../include/trie.h"
 #include "./testtrie.h"
 
 TestTrie::TestTrie(){}

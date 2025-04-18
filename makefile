@@ -9,13 +9,13 @@ endif
 
 # Library =====================================================================================================
 
-mistercomplete.a: lib node.o trie.o mistercomplete.o
+mistercomplete.a: lib node.o trie.o completer.o
 	@echo " - Archiving into a library"
-	ar rcs ./lib/mistercomplete.a ./lib/node.o ./lib/trie.o ./lib/mistercomplete.o
+	ar rcs ./lib/mistercomplete.a ./lib/node.o ./lib/trie.o ./lib/completer.o
 
-mistercomplete.o: ./src/mistercomplete.cpp ./include/mistercomplete.h
+completer.o: ./src/completer.cpp ./include/completer.h
 	@echo " - Compiling mistercomplete.cpp"
-	g++ $(WARNFLAG) -c ./src/mistercomplete.cpp -o ./lib/mistercomplete.o
+	g++ $(WARNFLAG) -c ./src/completer.cpp -o ./lib/completer.o
 
 trie.o: ./src/trie.cpp ./include/trie.h
 	@echo " - Compiling trie.cpp"

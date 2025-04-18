@@ -1,5 +1,5 @@
 #pragma once
-#include "../src/trie/trie.h"
+#include "../include/trie.h"
 #include <vector>
 #include <string>
 #include <utility>
