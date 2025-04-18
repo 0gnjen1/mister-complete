@@ -4,14 +4,18 @@
 #include <utility>
 #include "trie.h"
 
-class Completer {
+namespace Mistercomplete {
 
-public:
-        Completer();
-        void add_entry(const int id, const std::string& text);
-        [[nodiscard]] std::vector<std::pair<int, std::string>> suggest(const std::string& text);
+        class Completer {
 
-private:
-        Trie trie;
+        public:
+                Completer();
+                void add_entry(const int id, const std::string& text);
+                [[nodiscard]] std::vector<std::pair<int, std::string>> suggest(const std::string& text);
 
-};
+        private:
+                Trie trie;
+
+        };
+
+} // end namespace Mistercomplete

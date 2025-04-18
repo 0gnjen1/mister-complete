@@ -5,15 +5,18 @@
 #include "../include/trie.h"
 #include "../include/completer.h"
 
-Completer::Completer() {}
+namespace Mistercomplete {
 
-void Completer::add_entry(const int id, const std::string& text)
-{
-	trie.insert(id, text);
-}
+	Completer::Completer() {}
 
-[[nodiscard]] std::vector<std::pair<int, std::string>> Completer::suggest(const std::string& text)
-{
-	return trie.autocomplete(text);
-}
+	void Completer::add_entry(const int id, const std::string& text)
+	{
+		trie.insert(id, text);
+	}
 
+	[[nodiscard]] std::vector<std::pair<int, std::string>> Completer::suggest(const std::string& text)
+	{
+		return trie.autocomplete(text);
+	}
+
+} // end namespace Mistercomplete

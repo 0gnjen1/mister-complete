@@ -9,7 +9,7 @@
 
 int main(){
 
-	Completer mc;
+	Mistercomplete::Completer mc;
 	mc.add_entry(1, "a");
 	mc.add_entry(2, "aa");
 	mc.add_entry(3, "xyz");
