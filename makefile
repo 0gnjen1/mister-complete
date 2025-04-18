@@ -1,4 +1,4 @@
-WARNFLAG := -Wall -Werror -Wextra -Wpedantic
+# WARNFLAG := -Wall -Werror -Wextra -Wpedantic
 
 STATIC_OPTION := -static #Linux
 UNAME := $(shell uname)
@@ -9,23 +9,23 @@ endif
 
 # Library =====================================================================================================
 
-mistercomplete.a: ./lib/ ./src/node/node.o ./src/trie/trie.o ./src/mistercomplete/mistercomplete.o
+mistercomplete.a: lib node.o trie.o mistercomplete.o
 	@echo " - Archiving into a library"
-	ar rcs ./lib/mistercomplete.a ./src/node/node.o ./src/trie/trie.o ./src/mistercomplete/mistercomplete.o
+	ar rcs ./lib/mistercomplete.a ./lib/node.o ./lib/trie.o ./lib/mistercomplete.o
 
-mistercomplete.o: ./src/mistercomplete/mistercomplete.cpp ./src/mistercomplete/mistercomplete.h
+mistercomplete.o: ./src/mistercomplete.cpp ./include/mistercomplete.h
 	@echo " - Compiling mistercomplete.cpp"
-	g++ $(WARNFLAG) -c ./src/mistercomplete/mistercomplete.cpp -o ./src/mistercomplete/mistercomplete.o
+	g++ $(WARNFLAG) -c ./src/mistercomplete.cpp -o ./lib/mistercomplete.o
 
-trie.o: ./src/trie/trie.cpp ./src/trie/trie.h
+trie.o: ./src/trie.cpp ./include/trie.h
 	@echo " - Compiling trie.cpp"
-	g++ $(WARNFLAG) -c ./src/trie/trie.cpp -o ./src/trie/trie.o
+	g++ $(WARNFLAG) -c ./src/trie.cpp -o ./lib/trie.o
 
-node.o: ./src/node/node.cpp ./src/node/node.h
+node.o: ./src/node.cpp ./include/node.h
 	@echo " - Compiling node.cpp"
-	g++ $(WARNFLAG) -c ./src/node/node.cpp -o ./src/node/node.o
+	g++ $(WARNFLAG) -c ./src/node.cpp -o ./lib/node.o
 
-./lib/:
+lib:
 	mkdir lib
 
 # Test Classes =====================================================================================================
@@ -51,5 +51,5 @@ testing.o: ./test/testing.cpp
 
 clean:
 	@echo " - Cleaning up the object files and the compiled library"
-	rm -f ./lib/mistercomplete.a ./src/*/*.o ./test/*.out ./test/*.o
-	rm -rf lib
+	rm -f ./test/*.out ./test/*.o
+	rm -rf ./lib/

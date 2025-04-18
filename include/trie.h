@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include <utility>
-#include "../node/node.h"
+#include "node.h"
 
 class Trie {
 

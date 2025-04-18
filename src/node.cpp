@@ -1,4 +1,4 @@
-#include "../node/node.h"
+#include "../include/node.h"
 
 int Node::child_count()
 {

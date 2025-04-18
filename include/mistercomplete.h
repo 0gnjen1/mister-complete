@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 #include <utility>
-#include "../trie/trie.h"
+#include "trie.h"
 
 class Mistercomplete {
 

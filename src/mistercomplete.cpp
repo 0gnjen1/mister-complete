@@ -2,8 +2,8 @@
 #include <string>
 #include <vector>
 #include <utility>
-#include "../trie/trie.h"
-#include "mistercomplete.h"
+#include "../include/trie.h"
+#include "../include/mistercomplete.h"
 
 Mistercomplete::Mistercomplete() {}
 

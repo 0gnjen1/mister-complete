@@ -1,5 +1,5 @@
-#include "../trie/trie.h"
-#include "../node/node.h"
+#include "../include/trie.h"
+#include "../include/node.h"
 #include <iostream>
 #include <string>
 #include <vector>
