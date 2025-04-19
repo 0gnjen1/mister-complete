@@ -20,9 +20,12 @@ namespace Mistercomplete {
 
 
 	void TestTrie::get_all_entries_recursive(Mistercomplete::Node* node, std::vector<std::pair<int, std::string>>& results, std::string& current_word){
-		if(node->ending)
+		if(node->ending || !node->child_count())
 		{
-			results.push_back(make_pair(node->id, current_word));
+			if(current_word.size() > 0)
+			{
+				results.push_back(make_pair(node->id, current_word));
+			}
 		}
 		for(int i=0; i<26; i++)
 		{

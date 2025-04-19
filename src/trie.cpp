@@ -1,6 +1,5 @@
 #include "../include/trie.h"
 #include "../include/node.h"
-#include <iostream>
 #include <string>
 #include <vector>
 
@@ -45,20 +44,15 @@ namespace Mistercomplete {
 			current_node = current_node->children[char_index];
 			node_path.push_back(current_node);
 		}
-		if(current_node->child_count());	// <-- it's literally magic how this semicolon is here yet everything works
+		current_node->id = -1;
+		current_node->ending = false;
+		for(int i=entry.size()-1; i>=0; i--)
 		{
-			current_node->id = -1;
-			current_node->ending = false;
-			return;
-		}
-		for(int i=entry.size(); i>=0; i--)
-		{
-			if(node_path[i]->child_count()) return;
+			if(node_path[i]->child_count() || node_path[i]->ending) return;
 			int char_index = (int)entry[i]-97;
 			node_path[i]->parent->children[char_index] = nullptr;
 			delete node_path[i];
 		}
-
 	}
 
 	Node* Trie::get_node_by_prefix(const std::string& prefix)
